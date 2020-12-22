@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create branch with lockfiles change one file (package.json) and generate its lockfile (old syntax) 1`] = `
+Object {
+  "lock": "{\\"devDependencies\\":{\\"jest\\":\\"1.1.1\\"}}",
+  "packageJson": "{\\"devDependencies\\":{\\"jest\\":\\"1.2.0\\"}}",
+  "type": "npm",
+}
+`;
+
+exports[`create branch with lockfiles change two files (package.json, frontend/package.json) and generate their lockfiles 1`] = `
+Object {
+  "lock": "{\\"devDependencies\\":{\\"jest\\":\\"1.1.1\\"}}",
+  "packageJson": "{\\"devDependencies\\":{\\"jest\\":\\"1.2.0\\"}}",
+  "type": "npm",
+}
+`;
+
+exports[`create branch with lockfiles change two files (package.json, frontend/package.json) and generate their lockfiles 2`] = `
+Object {
+  "lock": "{\\"devDependencies\\":{\\"jest\\":\\"1.1.1\\"}}",
+  "packageJson": "{\\"devDependencies\\":{\\"jest\\":\\"1.2.0\\"}}",
+  "type": "npm",
+}
+`;
+
+exports[`create branch with lockfiles don’t generate the same lockfile multiple times 1`] = `
+Object {
+  "lock": "{\\"devDependencies\\":{\\"jest\\":\\"1.1.1\\",\\"west\\":\\"1.1.1\\"}}",
+  "packageJson": "{\\"devDependencies\\":{\\"jest\\":\\"1.2.0\\",\\"west\\":\\"1.5.0\\"}}",
+  "type": "npm",
+}
+`;
+
+exports[`create branch with lockfiles handle exec server 500 gracefully 1`] = `
+Object {
+  "lock": "{\\"devDependencies\\":{\\"jest\\":\\"1.1.1\\"}}",
+  "packageJson": "{\\"devDependencies\\":{\\"jest\\":\\"1.2.0\\"}}",
+  "type": "npm",
+}
+`;
