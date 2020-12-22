@@ -1,0 +1,109 @@
+{
+  "name": "@greenkeeper/jobs",
+  "version": "0.0.0-development",
+  "dependencies": {
+    "@octokit/rest": "16.19.0",
+    "amqplib": "^0.5.0",
+    "bluebird": "^3.4.6",
+    "catbox": "^7.1.3",
+    "catbox-memory": "^2.0.4",
+    "couchdb-bootstrap": "14.1.1",
+    "envalid": "^5.0.0",
+    "escape-string-regexp": "^2.0.0",
+    "github-url-from-git": "^1.4.0",
+    "gk-log": "1.5.0",
+    "greenkeeper-monorepo-definitions": "^1.19.1",
+    "hot-shots": "^5.0.0",
+    "joi": "^14.0.0",
+    "js-yaml": "^3.7.0",
+    "json-in-place": "^1.0.1",
+    "jsonwebtoken": "^8.1.1",
+    "lodash": "^4.17.10",
+    "mergejson": "^1.0.30",
+    "micromatch": "^4.0.2",
+    "nodemailer": "^6.0.0",
+    "npm-registry-client": "^8.3.0",
+    "pouchdb-http": "^6.0.2",
+    "pouchdb-mapreduce": "^6.0.5",
+    "pouchdb-upsert": "greenkeeperio/upsert#add_update-timeout",
+    "promise-queue": "^2.2.3",
+    "promise-retry": "^1.1.1",
+    "readme-badger": "^0.3.0",
+    "redis": "^2.8.0",
+    "request": "^2.75.0",
+    "request-promise": "^4.1.1",
+    "retry-promise": "^1.0.0",
+    "rollbar": "^2.0.3",
+    "semver": "^6.0.0",
+    "slack-notify": "^0.1.6",
+    "stripe": "^8.51.0",
+    "yml-in-place": "^1.0.2"
+  },
+  "devDependencies": {
+    "jest": "^22.4.2",
+    "lolex": "^4.0.1",
+    "nock": "^10.0.0",
+    "prettier-standard-formatter": "^0.222222222222222.333333333333333",
+    "simple-mock": "^0.8.0",
+    "standard": "^12.0.1",
+    "weak": "^1.0.1"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "license": "Apache-2.0",
+  "jest": {
+    "testRegex": "/test/.*\\.js$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/test/helpers/.*\\.js$"
+    ],
+    "collectCoverage": true,
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/nock"
+    ],
+    "setupTestFrameworkScriptFile": "./jest.setup.js",
+    "testEnvironment": "node"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greenkeeperio/greenkeeper.git"
+  },
+  "scripts": {
+    "format": "prettier-standard-formatter jobs lib test",
+    "db:start": "./start-couchdb",
+    "deploy": "./deploy",
+    "pretest": "standard && npm run db:start",
+    "start": "node index.js",
+    "test": "npm run test:chunked",
+    "test:localdb": "COUCH_URL=http://localhost:5984 standard && npm run test:chunked",
+    "test:chunked": "npm run test:lib && npm run test:jobs && npm run test:github && npm run test:rest",
+    "test:sequential": "NODE_ENV=testing jest -i",
+    "test:parallel": "NODE_ENV=testing jest",
+    "test:lib": "NODE_ENV=testing jest lib --logHeapUsage -i",
+    "test:jobs": "NODE_ENV=testing jest jobs/*.js --logHeapUsage -i",
+    "test:github": "NODE_ENV=testing jest jobs/github-event --logHeapUsage -i",
+    "test:rest": "NODE_ENV=testing jest content utils --logHeapUsage -i"
+  },
+  "standard": {
+    "env": {
+      "jest": true
+    },
+    "globals": [
+      "jest",
+      "expect",
+      "describe",
+      "test",
+      "beforeAll",
+      "beforeEach",
+      "afterAll",
+      "afterEach"
+    ],
+    "ignore": [
+      "couchdb"
+    ]
+  }
+}
